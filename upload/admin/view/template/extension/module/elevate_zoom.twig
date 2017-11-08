@@ -1,0 +1,75 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a>
+      </div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+          <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }} </h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+          <ul class="nav nav-tabs" id="tabs">
+            <li class="active"><a href="#tab-general" data-toggle="tab"><i class="fa fa-fw fa-wrench"></i> {{ tab_general }} </a></li>
+            <li><a href="#tab-css-style" data-toggle="tab"><i class="fa fa-fw fa-css3"></i> {{ tab_additional }} </a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab-general">
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-fadein"><span data-toggle="tooltip" title="{{ help_fadein }}">{{ entry_fadein }}</span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="module_elevate_zoom_fadein" value="{{ module_elevate_zoom_fadein }}" placeholder="{{ entry_fadein }}" id="input-fadein" class="form-control" />
+                    {% if error_fadein %}
+                      <div class="text-danger">{{ error_fadein }}</div>
+                    {% endif %}
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-fadeout"><span data-toggle="tooltip" title="{{ help_fadeout }}">{{ entry_fadeout }}</span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="module_elevate_zoom_fadeout" value="{{ module_elevate_zoom_fadeout }}" placeholder="{{ entry_fadeout }}" id="input-fadeout" class="form-control" />
+                    {% if error_fadeout %}
+                      <div class="text-danger">{{ error_fadeout }}</div>
+                    {% endif %}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+                <div class="col-sm-10">
+                  <select name="module_elevate_zoom_status" id="input-status" class="form-control">
+                      {% if module_elevate_zoom_status %}
+                        <option value="1" selected="selected">{{ text_enabled }}</option>
+                        <option value="0">{{ text_disabled }}</option>
+                      {% else %}
+                        <option value="1">{{ text_enabled }}</option>
+                        <option value="0" selected="selected">{{ text_disabled }}</option>
+                      {% endif %}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}

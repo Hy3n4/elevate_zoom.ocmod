@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Elevate Zoom Plugin</name>
+    <code>elevate-zoom-plugin</code>
+    <version>3.0.0</version>
+    <author>Hy3n4 (hy3nk4@gmail.com)</author>
+    <link>http://www.hwdesign.cz/</link>
+    <file path="catalog/view/theme/*/template/product/product.twig">
+        <operation>
+            <search>
+               <![CDATA[{{ footer }}]]>
+            </search>
+            <add position="before">
+                <![CDATA[
+                <script src='catalog/view/javascript/jquery.elevatezoom.js'></script>
+                <script type="text/javascript" src="{{ module_elevate_zoom }}"></script>
+                <script>$('#{{ model }}').elevateZoom({
+                    zoomType: "inner",
+                    cursor: "crosshair",
+                    zoomWindowFadeIn: 500,
+                    zoomWindowFadeOut: 750
+                });</script>
+                ]]>
+            </add>
+        </operation>
+        <operation>
+            <search>
+                <![CDATA[<img src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" />]]>
+            </search>
+            <add position="replace">
+                <![CDATA[
+                <img id="{{ model }}" src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" data-zoom-image="{{ popup }}" />
+                ]]>
+            </add>
+        </operation>
+    </file>
+</modification>
